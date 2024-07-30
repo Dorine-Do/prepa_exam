@@ -18,6 +18,7 @@ async function initializeDatabase() {
     conn = await getConnection();
     await conn.query("CREATE DATABASE IF NOT EXISTS birthdayApp");
     await conn.query("USE birthdayApp");
+
     await conn.query(`CREATE TABLE IF NOT EXISTS students (
       id INT PRIMARY KEY AUTO_INCREMENT,
       birthday DATE,
@@ -25,6 +26,7 @@ async function initializeDatabase() {
       firstname VARCHAR(255),
       email VARCHAR(255)
     )`);
+
     await conn.query(`CREATE TABLE IF NOT EXISTS intervenants (
       id INT PRIMARY KEY AUTO_INCREMENT,
       birthday DATE,
@@ -32,11 +34,21 @@ async function initializeDatabase() {
       firstname VARCHAR(255),
       email VARCHAR(255)
     )`);
+
     await conn.query(`CREATE TABLE IF NOT EXISTS quotes (
         id INT PRIMARY KEY AUTO_INCREMENT,
         quote TEXT,
         author VARCHAR(255)
       )`);
+
+    await conn.query(`CREATE TABLE IF NOT EXISTS users (
+      id INT PRIMARY KEY AUTO_INCREMENT,
+      username VARCHAR(255),
+      password VARCHAR(255),
+      email VARCHAR(255),
+      role VARCHAR(255)
+    )`);
+
     console.log("Base de données et table créées.");
   } catch (err) {
     console.error(err);
