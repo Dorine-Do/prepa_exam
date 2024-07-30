@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getRandomQuote } from '../../services/birthdayApiService';
+import { getRandomQuote } from '../../services/quotesApiServices';
 
 function QuoteComponent(props) {
   const [Quote, setQuote] = useState();
@@ -7,7 +7,7 @@ function QuoteComponent(props) {
   useEffect(() => {
     getRandomQuote()
       .then((result) => {
-        // console.log(result)
+        console.log(result)
         return setQuote(result);
       })
       .catch(() => {
